@@ -1,14 +1,19 @@
-{% extends 'base.html' %}
-
-{% block title %}Vota{% endblock %}
+{% extends "base.html" %}
+{% block title %}Vota{% endblock title %}
 
 {% block content %}
-<h1>{{ questions.question_text }}</h1>
+<h1>{{ question.question_text }}</h1>
 
-<ul>
-    <h2>elige bien</h2>
+<form method="post">
+    {% csrf_token %}
     {% for c in question.choice_set.all %}
-    <li>{{ c.choice_text }}</li>
+    <input 
+        type="radio" 
+        name="choise" 
+        id="c_{{ c.id }}"
+        value="{{ c.id }}">
+    <label for="c_{{ c.id }}"> {{ c.choice_text }}</label>
     {% endfor %}
-</ul>
-{% endblock%}
+    <input type="submit" value="votar">
+</form>
+{% endblock %}
