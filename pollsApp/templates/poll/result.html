@@ -12,6 +12,35 @@
 
 
 </ul>
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+    const choice_text = {{ choice_text|escapejs }};
+    const votes ={{ votes|escapejs }}
+    var resultChart = new Chart(ctx, {
+      type: 'columns',
+      data: {
+      labels: JSON.parse(choice_text),
+      datasets: [{
+          label: '# of Votes',
+          data: JSON.parse(votes),
+          backgroundColor: 'rgba(76, 89, 65, 89 )',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+   
 <hr>
 <a href="{% url 'poll:home' %}">Encuestas</a>
 {% endblock %}
