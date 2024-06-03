@@ -18,7 +18,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('myChart');
-    const choice_text = {{ choice_text|escapejs }};
+    const choice_text = {{ choice_texts|escapejs }};
     const votes ={{ votes|escapejs }}
     var resultChart = new Chart(ctx, {
       type: 'columns',
